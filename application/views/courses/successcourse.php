@@ -1,6 +1,7 @@
 <script language="javascript" type="text/javascript">
 	var $j = jQuery.noConflict();
 	$j(function(){
+		alert('SUCCESS!');
 		$j(".menu").removeClass('currentmenu');
 		$j("#menu_b_2").addClass('currentmenu');
 	});

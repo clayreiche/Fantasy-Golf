@@ -1,7 +1,7 @@
 <div id="menubar">
 	<div class="menuborder" id="menu_0">
     	<div id="menu_b_0" class="menu">
-        	<a href="/index.php/player">MY GAME</a>
+        	<a href="/index.php/players">MY GAME</a>
         </div>
     </div>
 	<div class="menuborder" id="menu_1">

@@ -6,10 +6,10 @@ class Fantasygolf extends CI_Controller {
 	{
 		$this->load->helper('url');
 		if(!isset($this->session)) {
-			$this->session->set_userdata(array('isLoggedIn' => FALSE));
+			$this->session->set_userdata(array('isLoggedIn' => FALSE, 'badLoginAttempts' => '0'));
 		}
 		if($this->isLoggedIn()) {
-			redirect('/player');
+			redirect('/players');
 		}else {
 			$this->load->view('header');
 			$this->load->view('fantasy_golf');
@@ -29,14 +29,32 @@ class Fantasygolf extends CI_Controller {
 			$this->load->view('login');
 			$this->load->view('footer');
 		}else {
-			redirect('/player');
+			redirect('/players');
 		}
 	}
 	
 	public function loginPost()
 	{
-		$this->session->set_userdata(array('isLoggedIn' => TRUE));
-		redirect('/player');
+		$badLogins = $this->session->userdata('badLoginAttempts');
+		echo $badLogins;
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		
+		$this->load->database();
+		$sql = "select * from users where email = '" . $username . "' AND password = '" . $password . "'";
+		$query = $this->db->query($sql);
+		if($query->num_rows() > 0) {		
+			$this->session->set_userdata(array('isLoggedIn' => TRUE, 'badLoginAttempts' => '0'));
+			redirect('/players');
+		}else {
+			$badLogins++;
+			$this->session->set_userdata(array('isLoggedIn' => FALSE, 'badLoginAttempts' => $badLogins));
+			if($badLogins > '3') {
+				$query = $this->db->query("update users set status = '0' where email = '" . $username . "'");
+				redirect('/players');
+			}
+			redirect('/fantasygolf/login');
+		}
 	}
 	
 	public function logout()
@@ -59,16 +77,16 @@ class Fantasygolf extends CI_Controller {
 		}
 	}
 	
-	public function account()
+	public function accounts()
 	{
 		if($this->isLoggedIn()) {
 			$this->load->view('header');
 			$this->load->view('menu_bar');
-			$this->load->view('account');
+			$this->load->view('accounts/accounts');
 			$this->load->view('footer');
 		}else {
 			$this->load->view('header');
-			$this->load->view('account');
+			$this->load->view('accounts/accounts');
 			$this->load->view('footer');
 		}
 	}

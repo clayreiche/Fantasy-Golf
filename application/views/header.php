@@ -1,5 +1,5 @@
 <link href="/skin/css/styles.css" rel="Stylesheet">
-<script src="../../skin/js/jquery.js" type="text/javascript"></script>
+<script src="/skin/js/jquery.js" type="text/javascript"></script>
 <div id="superdiv">
 <div id="header">
 	<div id="logo">
@@ -14,7 +14,7 @@
             <li><a href="/index.php/fantasygolf/login">Login</a></li>
             <li>&nbsp;|&nbsp;</li>
             <?php endif; ?>
-            <li><a href="/index.php/fantasygolf/account">Account</a></li>
+            <li><a href="/index.php/fantasygolf/accounts">Account</a></li>
         </ul>       
     </div>
 </div>

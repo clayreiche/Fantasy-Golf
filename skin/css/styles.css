@@ -150,7 +150,7 @@ body {
 
 #main {
 	width: 100%;
-	height: 400px;
+	min-height: 400px;
 	font-family: Arial,Verdana,Helvetica,Sans-Serif;
 	text-align: center;
 	display: block;
@@ -214,4 +214,140 @@ body {
 	font-size: 12px;
     font-weight: bold;
     list-style: none outside none;
+}
+
+::selection,
+::-moz-selection {
+	background:#693;
+	color:#fff;
+}
+
+.tbl-hole {
+	border: 1px solid #b6b6b6;
+	border-collapse:collapse;
+	color: #666;
+	font-weight: bold;
+	line-height: 1.55em;
+	font-size: 10px;
+	font-family: arial, helvetica, sans-serif;
+}
+.tbl-hole th {
+	border: 1px solid #b6b6b6;
+	text-align:left;
+	padding-right:10px;
+	padding-left:5px;
+}
+.tbl-hole td {
+	border: 1px solid #b6b6b6;
+	text-align:center;
+	padding-right:5px;
+	padding-left:5px;
+}
+
+.hole-input {
+	clear:none;
+	display:inline;
+	width:25px; 
+	position:relative;
+	text-align: center;
+}
+.hole-input-handicap {
+	clear:none;
+	display:inline;
+	width:25px; 
+	position:relative;
+	text-align: center;
+}
+
+.hole-input-yards {
+	clear:none;
+	display:inline;
+	width:25px; 
+	position:relative;
+	text-align: center;
+}
+.hole-input-text {
+	clear:none;
+	display:inline;
+	width:25px; 
+	position:relative;
+	text-align: center;
+}
+.hole-par-text {
+	clear:none;
+	display:inline;
+	width:30px;
+	position:relative;
+	text-align: center;
+	font: 12px arial, helvetica, sans-serif;
+}
+.hole-input-yards-total {
+	width:35;
+}
+.addCourse {
+	list-style-type: none;
+	text-align: left;
+	font-size: 12px;
+}
+
+.input-box {
+	clear:none;
+	display:inline;
+	width:auto; 
+	padding-right:10px;
+	position:relative;
+}
+
+input.input-text, textarea {
+	padding: 2px;
+	margin-right:10px;
+	
+}
+
+input.input-text, select, textarea {
+	border: 1px solid #b6b6b6;
+	font: 12px arial, helvetica, sans-serif;
+}
+.input-text-wide {
+	width:300px;
+}
+label {
+	color: #666;
+	font-weight: bold;
+	line-height: 1.55em;
+	font-family: arial, helvetica, sans-serif;
+}
+
+.header-info {
+	float:left;
+}
+
+.teeBox {
+	color: #666;
+	font-weight: bold;
+	line-height: 1.55em;
+	font-size: 10px;
+	font-family: arial, helvetica, sans-serif;
+	width:90%;
+	min-height:100px;
+	border:1px solid #b6b6b6;
+	padding-top:10px;
+	padding-bottom:20px;
+	padding-left:20px;
+	padding-right:20px;
+	background:#EAEDED;
+}
+
+.teeLabel {
+	color: #666;
+	font-weight: bold;
+	line-height: 1.55em;
+	font-size: 24px;
+	font-family: arial, helvetica, sans-serif;
+	width:90%;
+	min-height:100px;
+	padding-top:10px;
+	padding-bottom:20px;
+	padding-left:150px;
+	padding-right:20px;
 }

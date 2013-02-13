@@ -41,10 +41,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'celink.db.8579468.hostedresource.com';
-$db['default']['username'] = 'celink';
-$db['default']['password'] = 'C#l1nk1234';
-$db['default']['database'] = 'celink';
+$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'root';
+$db['default']['password'] = '';
+$db['default']['database'] = 'fantasygolf';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
