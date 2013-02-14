@@ -150,7 +150,7 @@ body {
 
 #main {
 	width: 100%;
-	min-height: 400px;
+	min-height: 300px;
 	font-family: Arial,Verdana,Helvetica,Sans-Serif;
 	text-align: center;
 	display: block;
@@ -350,4 +350,52 @@ label {
 	padding-bottom:20px;
 	padding-left:150px;
 	padding-right:20px;
+}
+
+.courses {
+	padding:5px;
+	margin-left: 25px;
+	margin-bottom: 25px;
+	border: 1px solid #b6b6b6;
+	background-color: #F0EBE6;
+	min-height: 300px;
+	-moz-border-radius: 0px 20px 0px 0px;
+    -webkit-border-radius: 0px 20px 0px 0px;
+    -khtml-border-radius: 0px 20px 0px 0px;
+	behavior: url(border-radius.htc);
+    border-radius: 0px 20px 0px 0px;
+
+	-moz-box-shadow: 3px 3px 4px #b6b6b6;
+	-webkit-box-shadow: 3px 3px 4px #b6b6b6;
+	box-shadow: 3px 3px 4px #b6b6b6;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#b6b6b6')";
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#b6b6b6');
+
+}
+.courses table {
+	border-collapse:collapse;
+	color: #666;
+	line-height: 1.55em;
+	font-size: 12px;
+	font-family: arial, helvetica, sans-serif;
+}
+.courses th {
+	font-weight: bold;
+	text-align:left;
+	padding-right:10px;
+	padding-left:5px;
+}
+.courses td {
+	font-size: 10px;
+	border: 1px solid #b6b6b6;
+	text-align:center;
+	padding-right:5px;
+	padding-left:5px;
+}
+.my-courses {
+	float:left;
+	
+}
+.all-courses {
+	float:left;
 }

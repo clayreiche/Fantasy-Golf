@@ -40,11 +40,13 @@ class Fantasygolf extends CI_Controller {
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 		
-		$this->load->database();
+		//$this->load->database();
 		$sql = "select * from users where email = '" . $username . "' AND password = '" . $password . "'";
 		$query = $this->db->query($sql);
-		if($query->num_rows() > 0) {		
-			$this->session->set_userdata(array('isLoggedIn' => TRUE, 'badLoginAttempts' => '0'));
+		if($query->num_rows() > 0) {
+			$row = $query->row(); 
+			$user_id = $row->id;
+			$this->session->set_userdata(array('isLoggedIn' => TRUE, 'badLoginAttempts' => '0', 'loggedInUser' => $username, 'loggedInUserId' => $user_id));
 			redirect('/players');
 		}else {
 			$badLogins++;
