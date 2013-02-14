@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 13, 2013 at 01:05 PM
+-- Generation Time: Feb 14, 2013 at 05:16 PM
 -- Server version: 5.5.24-log
 -- PHP Version: 5.3.13
 
@@ -36,7 +36,31 @@ CREATE TABLE IF NOT EXISTS `courseholes` (
   `handicap` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=73 ;
+
+--
+-- Dumping data for table `courseholes`
+--
+
+INSERT INTO `courseholes` (`id`, `course_id`, `tbox`, `hole_num`, `yards`, `par`, `handicap`, `image`) VALUES
+(72, 9, 'gold', 18, 290, 4, 15, NULL),
+(71, 9, 'gold', 17, 545, 5, 3, NULL),
+(70, 9, 'gold', 16, 360, 4, 7, NULL),
+(69, 9, 'gold', 15, 178, 3, 13, NULL),
+(68, 9, 'gold', 14, 545, 5, 1, NULL),
+(67, 9, 'gold', 13, 171, 3, 11, NULL),
+(66, 9, 'gold', 12, 490, 5, 9, NULL),
+(65, 9, 'gold', 11, 143, 3, 17, NULL),
+(64, 9, 'gold', 10, 400, 4, 5, NULL),
+(63, 9, 'gold', 9, 410, 4, 6, NULL),
+(62, 9, 'gold', 8, 325, 4, 12, NULL),
+(61, 9, 'gold', 7, 365, 4, 10, NULL),
+(60, 9, 'gold', 6, 164, 3, 14, NULL),
+(59, 9, 'gold', 5, 515, 5, 4, NULL),
+(58, 9, 'gold', 4, 140, 3, 16, NULL),
+(57, 9, 'gold', 3, 415, 4, 2, NULL),
+(56, 9, 'gold', 2, 150, 3, 18, NULL),
+(55, 9, 'gold', 1, 395, 4, 8, NULL);
 
 -- --------------------------------------------------------
 
@@ -46,10 +70,17 @@ CREATE TABLE IF NOT EXISTS `courseholes` (
 
 CREATE TABLE IF NOT EXISTS `coursenames` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `course_id` int(11) NOT NULL,
   `course_name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `course_name` (`course_name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `coursenames`
+--
+
+INSERT INTO `coursenames` (`id`, `course_name`) VALUES
+(9, 'Meadow Oaks');
 
 -- --------------------------------------------------------
 
@@ -68,8 +99,16 @@ CREATE TABLE IF NOT EXISTS `courses` (
   `totalyds` int(11) NOT NULL,
   `par` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`id`, `course_id`, `tbox`, `rating`, `slope`, `outyds`, `inyds`, `totalyds`, `par`, `image`) VALUES
+(9, 9, 'gold', '9.9', 121, 2879, 3122, 6001, 70, '');
 
 -- --------------------------------------------------------
 
@@ -181,9 +220,16 @@ INSERT INTO `roles` (`id`, `name`, `displayname`, `status`) VALUES
 CREATE TABLE IF NOT EXISTS `usercourses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `Course_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `usercourses`
+--
+
+INSERT INTO `usercourses` (`id`, `user_id`, `course_id`) VALUES
+(1, 1, 9);
 
 -- --------------------------------------------------------
 
@@ -224,14 +270,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `handicap` float DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `email2`, `firstname`, `lastname`, `middlename`, `dob`, `startdate`, `handicap`, `status`) VALUES
-(1, 'clayreiche@gmail.com', 'reiche', NULL, 'Clay', 'Reiche', 'Brandon', '1973-02-21 00:00:00', '2011-09-02 15:33:07', 13, 1);
+(1, 'clayreiche@gmail.com', 'reiche', NULL, 'Clay', 'Reiche', 'Brandon', '1973-02-21 00:00:00', '2011-09-02 15:33:07', 13, 1),
+(2, 'creiche@igov.com', 'reiche', NULL, 'Chuck', 'Reiche', 'Patrick', '1971-01-25 00:00:00', '2013-02-13 17:10:43', 9, 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
