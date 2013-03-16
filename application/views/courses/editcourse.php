@@ -3,7 +3,9 @@
 	$j(function(){		
 		$j(".menu").removeClass('currentmenu');
 		$j("#menu_b_2").addClass('currentmenu');
-		
+		$j('.tboxline').each(function() {
+			$j(this).css('background-color', lighterColor($j(this).css('background-color'),.8));
+		});
 		$j(".hole-input").attr('maxlength', '1');
 		$j(".hole-input-text").attr('maxlength', '2');
 		$j(".hole-input-handicap").attr('maxlength', '2');
@@ -93,22 +95,68 @@
 				$j('#hole_par_' + nextId).focus();
 			}
 		});
-		
 	});
 </script>
 <div id="topmain"></div>
 <div id="main">
-	<br />
-	<label>Add a Course</label><br />
-	<form id="loginform" action="/index.php/courses/createCourse/" method="post">
+	<label style="float:left;margin-left:40px;">Edit Course: <?php echo $course_name . " (" . $course_id . ")"; ?></label>
+	<br>
+	<?php foreach($tboxes as $tbox): ?>
+	<div class="" style="margin-left:40px;margin-top:5px;">
+		<table class=" tbl-hole tboxline" style="background-color:<?php echo $tbox->tbox; ?>;">
+			<tr>
+				<th>Hole</th>
+				<td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>OUT</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>IN</td><td>TOTAL</td>
+			</tr>
+			<tr>
+				<th><?php echo ucfirst($tbox->tbox) . " " . $tbox->rating . "/" . $tbox->slope; ?></th>
+				<?php foreach($tbox->holes as $hole): ?>
+					<?php if($hole->hole_num == '10'): ?>
+						<td><?php echo $tbox->outyds; ?></td>
+					<?php endif; ?>
+					<td><?php echo $hole->yards; ?></td>
+					<?php if($hole->hole_num == '18'): ?>
+						<td><?php echo $tbox->inyds; ?></td>
+						<td><?php echo $tbox->totalyds; ?></td>
+					<?php endif; ?>
+				<?php endforeach; ?>
+			</tr>
+			<tr>
+				<th><?php echo ucfirst($tbox->tbox) . " Handicap"; ?></th>
+				<?php foreach($tbox->holes as $hole): ?>
+					<?php if($hole->hole_num == '10'): ?>
+						<td></td>
+					<?php endif; ?>
+					<td><?php echo $hole->handicap; ?></td>
+					<?php if($hole->hole_num == '18'): ?>
+						<td></td>
+						<td></td>
+					<?php endif; ?>
+				<?php endforeach; ?>
+			</tr>
+			<tr>
+				<th><?php echo ucfirst($tbox->tbox) . " Par"; ?></th>
+				<?php $partotal = 0; $backpartotal = 0; ?>
+				<?php foreach($tbox->holes as $hole): ?>								
+					<?php if($hole->hole_num == '10'): ?>
+						<td><?php echo $partotal; ?></td>
+						<?php $backpartotal = 0; ?>
+					<?php endif; ?>
+					<td><?php echo $hole->par; ?></td>
+					<?php $partotal = $partotal + $hole->par; ?>
+					<?php $backpartotal = $backpartotal + $hole->par; ?>
+					<?php if($hole->hole_num == '18'): ?>
+						<td><?php echo $backpartotal; ?></td>
+						<td><?php echo $partotal; ?></td>
+					<?php endif; ?>
+				<?php endforeach; ?>
+			</tr>
+			<tr><td colspan=22></td></tr>
+		</table>
+	</div>
+	<?php endforeach; ?>
+	<form id="teeboxform" action="/index.php/courses/saveCourse/" method="post">
 		<ul class="addCourse">
-			<li>
-				<div class="input-box header-info">
-					<label for="course_name">Course Name</label>
-					<br>
-					<input type="text" id="course_name" name="course_name" class="input-text input-text-wide" />
-				</div>
-			</li>
 			<li>
 				<input type="hidden" id="course_par" name="course_par" value="" />
 				<input type="hidden" id="course_par_out" name="course_par_out" value="" />
@@ -118,9 +166,6 @@
 				<input id="hole_yards_total" name="hole_yards_total" value="" type="hidden" />				
 				<input id="course_image" name="course_image" value="" type="hidden" />
 			</li>
-			<br>
-			<br>
-			<br>
 			<div class="teeBox" style="">
 				<li>				
 					<div class="header-info" style="">

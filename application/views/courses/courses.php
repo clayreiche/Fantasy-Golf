@@ -13,7 +13,7 @@
 			<tr><th>My Courses</th><th></th></tr>
 			<?php if(count($mycourses) > 0) : ?>
 			<?php foreach($mycourses as $row): ?>
-				<tr><td><?php echo $row->course_name; ?></td><td><a href="courses/editCourse/<?php echo $row->id; ?>">edit</a></tr>
+				<tr><td><?php echo $row->course_name; ?></td><td><a href="/index.php/courses/editCourse/<?php echo $row->id; ?>">edit</a></tr>
 			<?php endforeach; ?>
 			<?php else: ?>
 				<tr><td>You have no courses set up.</td><td></td></tr>
@@ -25,10 +25,10 @@
 			<tr><th>All Courses</th><th></th></tr>
 			<?php if(count($allcourses) > 0) : ?>
 			<?php foreach($allcourses as $row): ?>
-				<tr><td><?php echo $row->course_name; ?></td><td><a href="courses/viewCourse/<?php echo $row->id; ?>">view</a></tr>
+				<tr><td><?php echo $row->course_name; ?></td><td><a href="/index.php/courses/viewCourse/<?php echo $row->id; ?>">view</a></tr>
 			<?php endforeach; ?>
 			<?php else: ?>
-				<tr><td>You have no courses set up.</td><td></td></tr>
+				<tr><td>There are no courses set up.</td><td></td></tr>
 			<?php endif; ?>
 		</table>
 	</div>

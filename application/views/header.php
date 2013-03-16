@@ -1,5 +1,6 @@
 <link href="/skin/css/styles.css" rel="Stylesheet">
 <script src="/skin/js/jquery.js" type="text/javascript"></script>
+<script src="/skin/js/fantasygolf.js" type="text/javascript"></script>
 <div id="superdiv">
 <div id="header">
 	<div id="logo">

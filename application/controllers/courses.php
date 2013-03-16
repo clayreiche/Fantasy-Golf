@@ -40,8 +40,7 @@ class Courses extends CI_Controller {
 	
 	public function createCourse()
 	{
-		if($this->session->userdata('isLoggedIn')) {
-			//$this->load->database();
+		if($this->session->userdata('isLoggedIn')) {			
 			$sql = "insert into coursenames (course_name) values('" . $this->input->post('course_name') . "')";
 			$query = $this->db->query($sql);
 			if(!$query) {
@@ -80,10 +79,14 @@ class Courses extends CI_Controller {
 			$sql = "insert into usercourses (user_id, course_id) values ('" . $this->session->userdata('loggedInUserId') . "', '" . $course_id . "')";
 			$query = $this->db->query($sql);
 			
-			$this->load->view('header');
-			$this->load->view('menu_bar');
-			$this->load->view('courses/courses');
-			$this->load->view('footer');
+			if($this->input->post('submit') == 'save and finish') {
+				$this->load->view('header');
+				$this->load->view('menu_bar');			
+				$this->load->view('courses/courses');
+				$this->load->view('footer');			
+			}else if ($this->input->post('submit') == 'save and continue') {
+				redirect('/courses/editCourse/' . $course_id);
+			}			
 		}else {
 			redirect('/');
 		}
@@ -91,12 +94,48 @@ class Courses extends CI_Controller {
 	
 	public function editCourse()
 	{
-		
+		$course_id = $this->uri->segment(3);
+		$sql = "select course_name from coursenames where id = '" . $course_id . "'";
+		$query = $this->db->query($sql);
+		if ($query->num_rows() > 0)	{
+		   $row = $query->row(); 
+		   $course_name = $row->course_name;
+		}
+		$tboxes = array();
+		$sql = "select * from courses where course_id = '" . $course_id . "'";
+		$query = $this->db->query($sql);
+		foreach($query->result() as $row) {			
+			$tboxes[] = $row;
+		}
+		foreach($tboxes as $tbox) {
+			$holes = array();
+			$sql = "select * from courseholes where course_id = '" . $course_id . "' AND tbox = '" . $tbox->tbox . "' order by hole_num";
+			$query = $this->db->query($sql);
+			foreach($query->result() as $row) {			
+				$holes[] = $row;
+			}
+			$tbox->holes = $holes;
+		}
+		$data = array(	'course_id' => $course_id,
+						'course_name' => $course_name,
+						'tboxes' => $tboxes);
+		$this->load->view('header');
+		$this->load->view('menu_bar');			
+		$this->load->view('courses/editcourse',$data);
+		$this->load->view('footer');
+	}
+	
+	public function saveCourse()
+	{
+	
 	}
 	
 	public function viewCourse()
 	{
-		
+		$this->load->view('header');
+		$this->load->view('menu_bar');			
+		$this->load->view('courses/viewcourse');
+		$this->load->view('footer');
 	}
 }
 
